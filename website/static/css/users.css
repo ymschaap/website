@@ -1,46 +1,176 @@
-.showcaseSection .logos {
-  background: #eee;
-  border-radius: 5px;
-  padding: 20px 30px;
-}
-
-.showcaseSection .babel-user {
-  box-sizing: border-box;
-  padding-left: 15px;
-  padding-right: 15px;
-  width: 33.33333%;
-}
-
-.mainContainer .showcaseSection .babel-user-link {
-  background: #fff;
-  border-radius: 5px;
-  display: block;
-  height: 120px;
-  margin: 15px 0;
-  padding: 10px;
+.showcaseSection .hr {
+  margin: 60px auto 20px auto;
+  border: none;
+  border-top: 1px solid #dfe2e5;
   position: relative;
 }
 
-.showcaseSection .babel-user .babel-user-logo {
-  left: 50%;
-  max-height: 100px;
-  max-width: 200px;
+.showcaseSection .hr span {
+  font-size: 1.5em;
   position: absolute;
-  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-}
-
-.mainContainer .showcaseSection .babel-user-link:hover {
+  left: 50%;
+  padding: 0px 15px;
   background: #fff;
-  box-shadow: 0px 0px 2px 0px #000;
-  transform: scale3d(1.1, 1.1, 1);
+  top: 0;
+  letter-spacing: 1.2px;
 }
 
-@media only screen and (min-width: 360px) and (max-width: 736px) {
-  .showcaseSection .babel-user {
+.showcaseSection .users {
+  position: relative;
+}
+
+/* reset existing a styling */
+.showcaseSection .users a,
+.showcaseSection .users a:hover {
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.showcaseSection .users .filter {
+  display: block;
+  margin: 40px auto 20px 0;
+}
+
+.showcaseSection .users .filter a {
+  font-size: 16px;
+}
+
+.showcaseSection .users .filter a.active {
+  font-weight: 700;
+}
+
+.showcaseSection .users ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  font-size: 1rem;
+  font-weight: initial;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.showcaseSection .users ul > li {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.showcaseSection .users ul > li.action {
+  display: block;
+  margin: 20px auto 10px auto;
+  width: 100%; /* force horizontal space */
+}
+
+.showcaseSection .users ul > li.action button {
+  border: none;
+  background: none;
+  color: #7aaaff;
+  text-align: center;
+  border-bottom: 1px solid #7aaaff;
+  outline: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Each Company */
+.showcaseSection .users ul > li > .holder {
+  flex: 1;
+  width: 250px;
+  background: #fff;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.04);
+  padding: 24px;
+  margin: 65px 16px 24px 16px;
+  text-align: center;
+  border: 1px solid #e2e2e2;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Member Photo */
+.showcaseSection .users ul > li > .holder .logo {
+  background: #fff;
+  max-width: 140px;
+  max-height: 50px;
+  display: block;
+  left: 50%;
+  top: 0;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border: 5px solid #fff;
+}
+
+.showcaseSection .users ul > li > .holder.icon .logo {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.showcaseSection .users ul > li > .holder .name {
+  margin: 12px 0 20px 0;
+  font-weight: 700;
+  font-size: 17px;
+  display: none;
+}
+
+.showcaseSection .users ul > li > .holder.icon .name {
+}
+
+.showcaseSection .users ul > li > .holder .attributes {
+  margin: 20px 0 10px 0;
+  color: #a1a1a1;
+  font-size: 18px;
+}
+
+.showcaseSection .users ul > li > .holder .attributes > div {
+  display: block;
+  font-weight: 300;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  line-height: 1.6em;
+}
+
+.showcaseSection .users ul > li > .holder .attributes > div > a {
+  color: #a1a1a1;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  position: relative;
+  padding-right: 14px;
+}
+
+.showcaseSection .users ul > li > .holder .attributes a:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: inline-block;
+  background: 2px 2px
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+CiAgPHBhdGggZD0iTTkuMjkgMTUuODhMMTMuMTcgMTIgOS4yOSA4LjEyYS45OTYuOTk2IDAgMSAxIDEuNDEtMS40MWw0LjU5IDQuNTljLjM5LjM5LjM5IDEuMDIgMCAxLjQxTDEwLjcgMTcuM2EuOTk2Ljk5NiAwIDAgMS0xLjQxIDBjLS4zOC0uMzktLjM5LTEuMDMgMC0xLjQyeiIgZmlsbD0iI2ExYTFhMSIvPgo8L3N2Zz4=");
+  background-size: 18px 18px;
+  width: 18px;
+  height: 18px;
+}
+
+/*
+ * Mobile view
+ */
+@media (max-width: 600px) {
+  .showcaseSection .users ul > li {
     width: 100%;
   }
-  .showcaseSection .babel-user .babel-user-logo {
-    width: 100%;
+  .showcaseSection .users ul > li > .holder {
+    margin-left: auto;
+    margin-right: auto;
   }
 }

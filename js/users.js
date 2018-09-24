@@ -5,50 +5,60 @@
 
 class Users {
   constructor(element) {
-    this.settings = [];
-    this.sortSelected = "added";
-    this.filterSelected = null;
+    this.defaultSort = "position";
+    this.displaySelected = null;
+    this.totalCounter = 0;
+    this.filterCounter = 0;
 
-    this.displayAttributes = ["market", "company_size", "location", "story"];
+    this.displayAttributes = ["market", "location", "story"];
 
-    this.filterOptions = [
+    this.displayOptions = [
       {
         label: "Consumer",
-        id: "market",
-        value: /(Games|Social Media|Mobile|News)/i,
+        filterBy: "market",
+        value: !/Enterprise/i /* all non enterprise */,
       },
       {
         label: "Enterprise",
-        id: "market",
+        filterBy: "market",
         value: /Enterprise/i,
       },
       {
         label: "Open Source",
-        id: "open_source",
+        filterBy: "open_source",
+      },
+      {
+        label: "Employees",
+        sortBy: "company_size_sort",
+      },
+      {
+        label: "New",
+        sortBy: "added_timestamp",
       },
       {
         label: "Sponsor",
-        id: "sponsor",
+        filterBy: "sponsor",
       },
       {
         label: "Contributor",
-        id: "contributor",
+        filterBy: "contributor",
       },
       {
         label: "Blog",
-        id: "story",
+        filterBy: "story",
       },
     ];
 
     this.container = element;
+    this.users = {};
 
     this.render();
   }
 
   render() {
-    this.settings = this.container.dataset; // must support data-[*]
+    const settings = this.container.dataset;
 
-    if (!this.settings || this.settings.rendered === true) {
+    if (!settings || settings.rendered === true) {
       return;
     }
 
@@ -59,7 +69,49 @@ class Users {
 
     this.container.setAttribute("data-rendered", true);
 
-    this.renderList();
+    // get and prepare our users
+    if (settings.users) {
+      try {
+        this.users = JSON.parse(settings.users);
+      } catch (e) {
+        this.renderError("Error in parsing user JSON object");
+        return;
+      }
+      this.users.map((user, i) => {
+        // prepare users object
+        if (!user.attributes) {
+          user.attributes = {};
+        }
+
+        // get a timestamp, add as attribute (to filter on new/old)
+        user.added_timestamp = new Date().getTime();
+        if (user.added) {
+          const time = new Date(user.added);
+          if (time) {
+            user.added_timestamp = time.getTime();
+          }
+        }
+
+        //get a company size (to filter on big/small)
+        user.company_size_sort = 1;
+        if (user.attributes.company_size) {
+          const max_size = user.attributes.company_size.match(
+            /(-)?([0-9]+)(\+)?$/
+          );
+          if (max_size) {
+            user.company_size_sort = parseInt(max_size[2], 10);
+          }
+        }
+
+        // default sorting
+        user.position = i;
+        return user;
+      });
+      this.renderList();
+    } else {
+      this.renderError("No users found");
+      return;
+    }
   }
 
   renderList() {
@@ -74,31 +126,30 @@ class Users {
                     \${attributes}
                 </div>
               </div>`;
+    const clean = /\${[a-z]+}/gi;
     this.container.innerHTML = ""; // empty block
-    this.container.appendChild(this.renderHeader());
+    this.totalCounter = 0;
+    this.filterCounter = 0;
 
-    if (this.settings.users) {
-      let users = {};
-      try {
-        users = JSON.parse(this.settings.users);
-      } catch (e) {
-        return;
-      }
-
-      // sort (@todo, need key), filter and map
-      users
+    if (this.users) {
+      this.users
         .filter(user => {
-          // check if we need to filter
-          if (this.filterSelected !== null) {
+          // filter based on displaySelected
+          this.totalCounter++;
+          if (this.displaySelected !== null) {
             if (!user.attributes) {
               return false;
+            }
+            if (!this.displaySelected.filterBy) {
+              return true;
             }
             const filterThis = Object.entries(user.attributes).find(
               attribute => {
                 if (
-                  this.filterSelected.id === attribute[0] &&
-                  ((!this.filterSelected.value && attribute[1]) ||
-                    this.filterSelected.value.test(attribute[1]))
+                  this.displaySelected.filterBy === attribute[0] &&
+                  ((!this.displaySelected.value && attribute[1]) ||
+                    (this.displaySelected.value &&
+                      this.displaySelected.value.test(attribute[1])))
                 ) {
                   //no match for filter
                   return true;
@@ -111,10 +162,23 @@ class Users {
               return false;
             }
           }
-
+          this.filterCounter++;
           return true;
         })
+        .sort((a, b) => {
+          // sort by selected filter
+          if (this.displaySelected !== null) {
+            if (this.displaySelected.sortBy) {
+              return (
+                b[this.displaySelected.sortBy] - a[this.displaySelected.sortBy]
+              );
+            }
+          }
+          // or default sort
+          return a[this.defaultSort] - b[this.defaultSort];
+        })
         .map(user => {
+          // from template to a list item
           const prepare = [];
 
           prepare.className = user.logoIcon ? "holder icon" : "holder";
@@ -133,7 +197,7 @@ class Users {
                 return (
                   '<div><a href="' +
                   value +
-                  '" target="_top">Read Story</a></div>'
+                  '" target="_blank">Read Story</a></div>'
                 );
               } else {
                 return "<div>" + value + "</div>";
@@ -145,18 +209,24 @@ class Users {
           template = this.template(template, user); // user
 
           const li = document.createElement("li");
-          li.innerHTML = template;
+          li.innerHTML = template.replace(clean, "");
           list.appendChild(li);
         });
     }
 
     // add your company
-    const positions = [6, 25, 50];
-    positions.forEach(pos => {
+    const positions = [6, 24, 48, 96];
+    positions.reverse().forEach(pos => {
       if (list.childElementCount > pos) {
         list.insertBefore(this.renderAdd(), list.children[pos]);
       }
     });
+
+    // stats
+    this.container.appendChild(this.renderStats());
+
+    // header
+    this.container.appendChild(this.renderHeader());
 
     // render
     this.container.appendChild(list);
@@ -166,17 +236,17 @@ class Users {
     const div = document.createElement("div");
     div.className = "filter";
 
-    this.filterOptions.map((filter, i) => {
+    this.displayOptions.map((option, i) => {
       const dot = document.createElement("span");
       dot.innerHTML = " &middot; ";
 
       const a = document.createElement("a");
-      a.className = this.filterSelected === filter ? "active" : "";
-      a.innerHTML = filter.label;
+      a.className = this.displaySelected === option ? "active" : "";
+      a.innerHTML = option.label;
       a.href = "#";
       a.addEventListener("click", event => {
         event.preventDefault();
-        this.filterSelected = filter;
+        this.displaySelected = option;
         this.renderList();
       });
       i > 0 && div.appendChild(dot);
@@ -199,6 +269,24 @@ class Users {
     });
     li.appendChild(button);
     return li;
+  }
+
+  renderStats() {
+    const div = document.createElement("div");
+    div.className = "stats";
+
+    div.innerHTML =
+      (this.displaySelected && this.displaySelected.filterBy
+        ? "Showing " + this.filterCounter + " out of " + this.totalCounter
+        : "Showing " + this.totalCounter) + " users.";
+    return div;
+  }
+
+  renderError(msg) {
+    const div = document.createElement("div");
+    div.className = "error";
+    div.innerHTML = msg;
+    this.container.appendChild(div);
   }
 
   template(template, data) {

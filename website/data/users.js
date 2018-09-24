@@ -3,11 +3,12 @@ const users = [
     name: "Facebook",
     url: "https://facebook.com/",
     logo: "facebook.svg",
+    logoIcon: true,
     attributes: {
       market: "Social Media",
-      company_size: "1-10",
+      company_size: "201-500",
       sponsor: true,
-      story: "https://medium.com/story/here.html",
+      story: "https://code.fb.com/web/announcing-yarn-1-0/",
       location: "Menlo Park, CA, USA",
     },
     added: "2018-09-18",
@@ -17,7 +18,7 @@ const users = [
     url: "https://cloudflare.com/",
     logo: "cloudflare.png",
     attributes: {
-      market: "Enterprise",
+      market: "Network",
       company_size: "201-500",
       contributor: true,
     },
@@ -28,7 +29,7 @@ const users = [
     url: "https://www.netflix.com/",
     logo: "netflix.svg",
     attributes: {
-      market: "Games",
+      market: "Video",
     },
     added: "2018-09-18",
   },
@@ -37,20 +38,9 @@ const users = [
     url: "https://www.mozilla.org/",
     logo: "mozilla.svg",
     attributes: {
-      market: "Open Source",
+      market: "Browser",
       company_size: "1001-5000",
 
-      sponsor: true,
-    },
-    added: "2018-09-18",
-  },
-  {
-    name: "Yahoo!",
-    url: "https://yahoo.com/",
-    logo: "yahoo.png",
-    attributes: {
-      market: "Mobile",
-      company_size: "5000+",
       sponsor: true,
     },
     added: "2018-09-18",
@@ -59,6 +49,7 @@ const users = [
     name: "PayPal",
     url: "https://paypal.com",
     logo: "paypal.svg",
+    logoIcon: true,
     attributes: {
       market: "E-Commerce",
       company_size: "5000+",
@@ -71,7 +62,7 @@ const users = [
     url: "https://www.airbnb.com/",
     logo: "airbnb.svg",
     attributes: {
-      market: "Online Travel",
+      market: "Travel",
       company_size: "1001-5000",
       location: "Sillicon Valley, CA, USA",
     },
@@ -81,7 +72,9 @@ const users = [
     name: "Reddit",
     url: "https://www.reddit.com",
     logo: "reddit.png",
-
+    attributes: {
+      market: "Social Media",
+    },
     added: "2018-09-18",
   },
   {
@@ -109,6 +102,9 @@ const users = [
     name: "NFL",
     url: "http://www.nfl.com",
     logo: "nfl.svg",
+    attributes: {
+      market: "Sports",
+    },
     added: "2018-09-18",
   },
   {
@@ -134,7 +130,9 @@ const users = [
     name: "Zendesk",
     url: "http://www.zendesk.com",
     logo: "zendesk.svg",
-
+    attributes: {
+      market: "Support",
+    },
     added: "2018-09-18",
   },
   {
@@ -142,8 +140,7 @@ const users = [
     url: "https://vimeo.com",
     logo: "vimeo.svg",
     attributes: {
-      market: "Games",
-      company_size: false,
+      market: "Video",
     },
     added: "2018-09-18",
   },
@@ -170,14 +167,18 @@ const users = [
     name: "React",
     url: "https://facebook.github.io/react/",
     logo: "react.svg",
-
+    attributes: {
+      open_source: true,
+    },
     added: "2018-09-18",
   },
   {
     name: "Marionette",
     url: "http://marionettejs.com/",
     logo: "marionette.svg",
-
+    attributes: {
+      open_source: true,
+    },
     added: "2018-09-18",
   },
   {
@@ -191,9 +192,9 @@ const users = [
     name: "Slack",
     url: "https://slack.com/",
     logo: "slack.svg",
+    logoIcon: true,
     attributes: {
-      market: "Enterprise",
-      company_size: false,
+      market: "Communication",
     },
     added: "2018-09-18",
   },
@@ -202,7 +203,8 @@ const users = [
     url: "https://ghost.org/",
     logo: "ghost.svg",
     attributes: {
-      market: "Open Source",
+      market: "CMS",
+      open_source: true,
       company_size: "11-50",
     },
     added: "2018-09-18",
@@ -221,7 +223,10 @@ const users = [
     name: "Atom",
     url: "https://atom.io/",
     logo: "atom.png",
-
+    attributes: {
+      market: "Editor",
+      open_source: true,
+    },
     added: "2018-09-18",
   },
   {
@@ -310,9 +315,7 @@ const users = [
     name: "thoughtbot",
     url: "https://thoughtbot.com/",
     logo: "thoughtbot.svg",
-    attributes: {
-      company_size: false,
-    },
+    attributes: {},
     added: "2018-09-18",
   },
   {
@@ -358,7 +361,6 @@ const users = [
     logo: "linkedin.png",
     attributes: {
       market: "Social Media",
-      company_size: false,
     },
     added: "2018-09-18",
   },
@@ -392,7 +394,6 @@ const users = [
     logo: "hailo.png",
     attributes: {
       market: "Mobile",
-      company_size: false,
     },
     added: "2018-09-18",
   },
@@ -458,6 +459,7 @@ const users = [
     name: "Mango",
     url: "https://getmango.com/",
     logo: "mango.png",
+    logoIcon: true,
     attributes: {
       market: "Payments",
       company_size: "11-50",
@@ -499,7 +501,6 @@ const users = [
     logo: "tipranks.png",
     attributes: {
       market: "SEO",
-      company_size: false,
     },
     added: "2018-09-18",
   },
@@ -538,21 +539,29 @@ const users = [
     name: "Autoprefixer",
     url: "https://github.com/postcss/autoprefixer/",
     logo: "autoprefixer.svg",
-
+    logoIcon: true,
+    attributes: {
+      open_source: true,
+    },
     added: "2018-09-18",
   },
   {
     name: "PostCSS",
     url: "https://github.com/postcss/postcss/",
     logo: "postcss.svg",
-
+    logoIcon: true,
+    attributes: {
+      open_source: true,
+    },
     added: "2018-09-18",
   },
   {
     name: "SassDoc",
     url: "http://sassdoc.com/",
     logo: "sassdoc.svg",
-
+    attributes: {
+      open_source: true,
+    },
     added: "2018-09-18",
   },
   {
@@ -605,7 +614,6 @@ const users = [
     logo: "spoqa.png",
     attributes: {
       market: "Local Coupons",
-      company_size: false,
     },
     added: "2018-09-18",
   },
@@ -613,7 +621,7 @@ const users = [
     name: "ProAppSoft",
     url: "http://proappsoft.com/",
     logo: "proappsoft.png",
-
+    logoIcon: true,
     added: "2018-09-18",
   },
   {
@@ -636,7 +644,6 @@ const users = [
     logo: "windsor-circle.png",
     attributes: {
       market: "Retail",
-      company_size: false,
     },
     added: "2018-09-18",
   },
@@ -689,7 +696,7 @@ const users = [
     name: "angular-formly",
     url: "http://angular-formly.com",
     logo: "angular-formly.png",
-
+    logoIcon: true,
     added: "2018-09-18",
   },
   {
@@ -767,8 +774,7 @@ const users = [
     url: "http://www.ticketmaster.com/",
     logo: "ticketmaster.svg",
     attributes: {
-      market: "Curated Web",
-      company_size: false,
+      market: "E-Commerce",
     },
     added: "2018-09-18",
   },
@@ -844,7 +850,10 @@ const users = [
     name: "React Bootstrap",
     url: "https://react-bootstrap.github.io/",
     logo: "react-bootstrap.png",
-
+    logoIcon: true,
+    attributes: {
+      open_source: true,
+    },
     added: "2018-09-18",
   },
   {
@@ -994,7 +1003,7 @@ const users = [
     name: "Wallaby.js",
     url: "http://wallabyjs.com/",
     logo: "wallaby.svg",
-
+    logoIcon: true,
     added: "2018-09-18",
   },
   {
@@ -1029,7 +1038,7 @@ const users = [
     name: "Cuvva",
     url: "https://cuvva.co",
     logo: "cuvva.svg",
-
+    logoIcon: true,
     added: "2018-09-18",
   },
   {
@@ -1071,7 +1080,7 @@ const users = [
     name: "Under Armour",
     url: "https://www.underarmour.com/",
     logo: "ua.svg",
-
+    logoIcon: true,
     added: "2018-09-18",
   },
   {
@@ -1169,7 +1178,7 @@ const users = [
     name: "cssnano",
     url: "http://cssnano.co",
     logo: "cssnano.svg",
-
+    logoIcon: true,
     added: "2018-09-18",
   },
   {
@@ -1358,7 +1367,9 @@ const users = [
     name: "Microsoft",
     url: "https://www.microsoft.com",
     logo: "microsoft.svg",
-
+    attributes: {
+      company_size: "5000+",
+    },
     added: "2018-09-18",
   },
   {
@@ -1398,7 +1409,7 @@ const users = [
   },
   {
     name: "Directlyrics",
-    url: "httpw://www.directlyrics.com/",
+    url: "https://www.directlyrics.com/",
     logo: "directlyrics.svg",
 
     added: "2018-09-18",
@@ -1653,49 +1664,49 @@ const users = [
     url: "https://www.lizhi.io",
     logo: "digitalychee.svg",
 
-    added: "2018-09-18",
+    added: "2018-09-19",
   },
   {
     name: "CrowdSync",
     url: "https://www.crowdsync.io",
     logo: "crowdsync.svg",
 
-    added: "2018-09-18",
+    added: "2018-09-20",
   },
   {
     name: "FusionCharts",
     url: "https://www.fusioncharts.com/",
     logo: "fusioncharts.svg",
 
-    added: "2018-09-18",
+    added: "2018-09-20",
   },
   {
     name: "Yeti",
     url: "https://yeti.co",
     logo: "yeti.svg",
 
-    added: "2018-09-18",
+    added: "2018-09-20",
   },
   {
     name: "Kuali",
     url: "https://www.kuali.co",
     logo: "kuali.svg",
 
-    added: "2018-09-18",
+    added: "2018-09-21",
   },
   {
     name: "Sequence",
     url: "https://sequence.work",
     logo: "sequence.svg",
 
-    added: "2018-09-18",
+    added: "2018-09-21",
   },
   {
     name: "BitMidi",
     url: "https://bitmidi.com",
     logo: "bitmidi.svg",
 
-    added: "2018-09-18",
+    added: "2018-09-21",
   },
 ];
 

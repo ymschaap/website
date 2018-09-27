@@ -54,6 +54,8 @@ const users = [
       market: "E-Commerce",
       company_size: "5000+",
       location: "Sillicon Valley, CA, USA",
+      testimonial:
+        "We love using Babel and couldn't imagine a toolchain without it",
     },
     added: "2018-09-18",
   },
@@ -95,6 +97,7 @@ const users = [
       market: "Enterprise",
       company_size: "1001-5000",
       location: "Melbourne, Austrtalia",
+      testimonial: "Australia says hi to Babel!",
     },
     added: "2018-09-18",
   },
@@ -167,6 +170,7 @@ const users = [
     name: "React",
     url: "https://facebook.github.io/react/",
     logo: "react.svg",
+    logoIcon: true,
     attributes: {
       open_source: true,
     },
@@ -332,6 +336,8 @@ const users = [
     attributes: {
       market: "E-Commerce",
       company_size: "5000+",
+      testimonial:
+        "Hooray for Babel, we can't get enough, we even wrote this long blurb about how great it is.",
     },
     added: "2018-09-18",
   },
@@ -1369,6 +1375,8 @@ const users = [
     logo: "microsoft.svg",
     attributes: {
       company_size: "5000+",
+      testimonial:
+        "We build several tools utilizing Babel for within the Visual Studio Code.",
     },
     added: "2018-09-18",
   },

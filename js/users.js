@@ -10,26 +10,20 @@ class Users {
     this.totalCounter = 0;
     this.filterCounter = 0;
 
-    this.displayAttributes = ["market", "location", "story"];
+    this.displayAttributes = [
+      "testimonial",
+      "open_source",
+      "contributor",
+      "sponsor",
+    ];
 
     this.displayOptions = [
       {
-        label: "Consumer",
-        filterBy: "market",
-        value: !/Enterprise/i /* all non enterprise */,
-      },
-      {
-        label: "Enterprise",
-        filterBy: "market",
-        value: /Enterprise/i,
+        label: "Babel",
       },
       {
         label: "Open Source",
         filterBy: "open_source",
-      },
-      {
-        label: "Employees",
-        sortBy: "company_size_sort",
       },
       {
         label: "New",
@@ -44,8 +38,8 @@ class Users {
         filterBy: "contributor",
       },
       {
-        label: "Blog",
-        filterBy: "story",
+        label: "Testimonial",
+        filterBy: "testimonial",
       },
     ];
 
@@ -92,17 +86,6 @@ class Users {
           }
         }
 
-        //get a company size (to filter on big/small)
-        user.company_size_sort = 1;
-        if (user.attributes.company_size) {
-          const max_size = user.attributes.company_size.match(
-            /(-)?([0-9]+)(\+)?$/
-          );
-          if (max_size) {
-            user.company_size_sort = parseInt(max_size[2], 10);
-          }
-        }
-
         // default sorting
         user.position = i;
         return user;
@@ -115,6 +98,7 @@ class Users {
   }
 
   renderList() {
+    let userList = [];
     const list = document.createElement("ul");
     const userTemplate = `
               <div class="\${className}">
@@ -132,7 +116,7 @@ class Users {
     this.filterCounter = 0;
 
     if (this.users) {
-      this.users
+      userList = this.users
         .filter(user => {
           // filter based on displaySelected
           this.totalCounter++;
@@ -192,15 +176,16 @@ class Users {
               if (!value) {
                 return;
               }
-              // @todo: new, hiring,
-              if (displayAttribute === "story") {
+
+              if (displayAttribute === "testimonial") {
                 return (
-                  '<div><a href="' +
+                  '<div class="testimonial"><div class="hr"><span>“</span></div><div class="test">' +
                   value +
-                  '" target="_blank">Read Story</a></div>'
+                  "</div></div>"
                 );
               } else {
-                return "<div>" + value + "</div>";
+                // flairs flairs
+                return '<div class="' + displayAttribute + '"></div>';
               }
             })
             .join("");
@@ -210,15 +195,29 @@ class Users {
 
           const li = document.createElement("li");
           li.innerHTML = template.replace(clean, "");
-          list.appendChild(li);
+          return li;
         });
     }
 
-    // add your company
-    const positions = [6, 24, 48, 96];
-    positions.reverse().forEach(pos => {
-      if (list.childElementCount > pos) {
-        list.insertBefore(this.renderAdd(), list.children[pos]);
+    // testimonial rows moved to every 7th position
+    const testimonialList = [];
+
+    let currentPosition = 1;
+    userList.forEach(li => {
+      const wholeRowPosition = currentPosition % 7 === 0;
+      const testimonial = /class="testimonial"/i.test(li.innerHTML);
+      // pop testimonial in our array
+      if (testimonial) {
+        testimonialList.push(li);
+      }
+
+      list.appendChild(li);
+      currentPosition++;
+
+      if (wholeRowPosition && testimonialList.length > 0) {
+        const currentTestimional = testimonialList.shift();
+        currentTestimional.className = "action";
+        list.appendChild(currentTestimional);
       }
     });
 

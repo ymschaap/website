@@ -30,15 +30,15 @@ class Users {
         sortBy: "added_timestamp",
       },
       {
-        label: "Sponsor",
+        label: "Sponsors",
         filterBy: "sponsor",
       },
       {
-        label: "Contributor",
+        label: "Contributors",
         filterBy: "contributor",
       },
       {
-        label: "Testimonial",
+        label: "Testimonials",
         filterBy: "testimonial",
       },
     ];

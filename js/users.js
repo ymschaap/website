@@ -204,11 +204,12 @@ class Users {
 
     let currentPosition = 1;
     userList.forEach(li => {
-      const wholeRowPosition = currentPosition % 7 === 0;
+      const wholeRowPosition = currentPosition % 6 === 0;
       const testimonial = /class="testimonial"/i.test(li.innerHTML);
       // pop testimonial in our array
       if (testimonial) {
         testimonialList.push(li);
+        return; // save for later
       }
 
       list.appendChild(li);
@@ -219,6 +220,12 @@ class Users {
         currentTestimional.className = "action";
         list.appendChild(currentTestimional);
       }
+    });
+
+    // if testimonialList not empty
+    testimonialList.forEach(li => {
+      li.className = "action";
+      list.appendChild(li);
     });
 
     // stats

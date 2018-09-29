@@ -1716,6 +1716,12 @@ const users = [
 
     added: "2018-09-21",
   },
+  {
+    name: "Teampage",
+    url: "https://teampa.ge/",
+    logo: "teampage.png",
+    added: "2018-09-29"
+  },
 ];
 
 module.exports = users;

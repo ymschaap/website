@@ -18,6 +18,12 @@
   white-space: nowrap;
 }
 
+.showcaseSection a.button {
+  display: block;
+  max-width: 300px;
+  margin: 10px auto;
+}
+
 .showcaseSection .users {
   position: relative;
 }
@@ -72,28 +78,31 @@
   margin: 0;
 }
 
-.showcaseSection .users ul > li.action {
+.showcaseSection .users ul > li.row {
   display: block;
-  margin: 40px 40px 0px 40px;
+  margin: 0 40px;
   width: 100%; /* force horizontal space */
 }
 
 /* Testimonial */
-.showcaseSection .users ul > li.action .holder {
+.showcaseSection .users ul > li.row .holder {
   width: 100%;
-  margin: 0;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.showcaseSection .users ul > li.action button {
+.showcaseSection .users ul > li.row button {
   border: none;
   background: none;
   color: #7aaaff;
   text-align: center;
   border-bottom: 1px solid #7aaaff;
   outline: none;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
   padding: 0;
+  margin: 20px;
 }
 
 /* Each Company */
@@ -104,14 +113,13 @@
   background: #fff;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.04);
   padding: 18px;
-  margin: 65px 16px 24px 16px;
+  margin: 30px 16px;
   text-align: center;
   border: 1px solid #e2e2e2;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-
   font-size: 15px;
 }
 
@@ -131,6 +139,7 @@
 }
 
 .showcaseSection .users ul > li > .holder.icon {
+  margin-top: 30px;
   padding-top: 70px;
 }
 
@@ -168,7 +177,7 @@
  * Two column view
  */
 @media (max-width: 885px) {
-  .showcaseSection .users ul > li.action {
+  .showcaseSection .users ul > li.row {
     width: 530px;
   }
 }
@@ -183,7 +192,7 @@
   .showcaseSection .users ul > li {
     width: 100%;
   }
-  .showcaseSection .users ul > li.action {
+  .showcaseSection .users ul > li.row {
     margin-top: 0;
     margin-left: 0;
     margin-right: 0;

@@ -6,13 +6,12 @@
 class Users {
   constructor(element) {
     this.defaultSort = "position";
-    this.displaySelected = null;
     this.totalCounter = 0;
     this.filterCounter = 0;
 
     this.displayAttributes = [
       "testimonial",
-      "open_source",
+      "openSource",
       "contributor",
       "sponsor",
     ];
@@ -23,7 +22,7 @@ class Users {
       },
       {
         label: "Open Source",
-        filterBy: "open_source",
+        filterBy: "openSource",
       },
       {
         label: "New",
@@ -42,6 +41,7 @@ class Users {
         filterBy: "testimonial",
       },
     ];
+    this.displaySelected = this.displayOptions[0];
 
     this.container = element;
     this.users = {};
@@ -200,7 +200,7 @@ class Users {
     }
 
     // testimonial rows moved to every 7th position
-    const testimonialList = [];
+    const testimonialList = [this.renderAdd()];
 
     let currentPosition = 1;
     userList.forEach(li => {
@@ -216,16 +216,19 @@ class Users {
       currentPosition++;
 
       if (wholeRowPosition && testimonialList.length > 0) {
-        const currentTestimional = testimonialList.shift();
-        currentTestimional.className = "action";
+        const currentTestimional = testimonialList.pop(); //shift
+        currentTestimional.className = "row";
         list.appendChild(currentTestimional);
       }
     });
 
     // if testimonialList not empty
     testimonialList.forEach(li => {
-      li.className = "action";
-      list.appendChild(li);
+      if (li.className !== "row") {
+        // non renderAdd()
+        li.className = "row";
+        list.appendChild(li);
+      }
     });
 
     // stats
@@ -263,15 +266,13 @@ class Users {
 
   renderAdd() {
     const li = document.createElement("li");
-    li.className = "action";
+    li.className = "row";
 
     const button = document.createElement("button");
     button.innerHTML = "Add your company";
     button.addEventListener("click", event => {
       event.preventDefault();
-      window.open(
-        "https://github.com/babel/website/edit/master/website/data/users.js"
-      );
+      window.open("https://build.amsterdam/your-company/babel");
     });
     li.appendChild(button);
     return li;

@@ -20,8 +20,8 @@ class Users extends React.Component {
                 organizations 🙂
               </p>
             </div>
-            <div class="hr">
-              <span>Who's Using</span>
+            <div className="hr">
+              <span>Who&#39;s Using</span>
             </div>
             <div
               className="users"
@@ -29,14 +29,24 @@ class Users extends React.Component {
             />
             <hr />
             <div className="prose">
-              <p>Are you using this project?</p>
-              <br />
-              <a
-                href="https://github.com/babel/website/edit/master/website/data/users.js"
-                className="button"
-              >
-                Add your company
-              </a>
+              <p>
+                Are you using this project?
+                <a
+                  href="https://build.amsterdam/your-company/babel"
+                  target="_blank"
+                  className="button"
+                >
+                  Add your company
+                </a>
+                or submit a{" "}
+                <a
+                  href="https://github.com/babel/website/edit/master/website/data/users.js"
+                  target="_blank"
+                >
+                  Pull Request
+                </a>{" "}
+                manually.
+              </p>
             </div>
           </div>
           <script src="/js/build/users.js" />

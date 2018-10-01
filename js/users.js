@@ -25,7 +25,7 @@ class Users {
         filterBy: "openSource",
       },
       {
-        label: "New",
+        label: "Newest",
         sortBy: "added_timestamp",
       },
       {
@@ -78,7 +78,7 @@ class Users {
         }
 
         // get a timestamp, add as attribute (to filter on new/old)
-        user.added_timestamp = new Date().getTime();
+        user.added_timestamp = new Date("1 Januari 1970").getTime();
         if (user.added) {
           const time = new Date(user.added);
           if (time) {

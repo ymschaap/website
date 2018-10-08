@@ -6,15 +6,13 @@ const users = [
     logoIcon: true,
     attributes: {
       sponsor: true,
+      contributor: true,
     },
   },
   {
     name: "CloudFlare",
     url: "https://cloudflare.com/",
     logo: "cloudflare.png",
-    attributes: {
-      contributor: true,
-    },
   },
   {
     name: "Netflix",
@@ -25,24 +23,20 @@ const users = [
     name: "Mozilla",
     url: "https://www.mozilla.org/",
     logo: "mozilla.svg",
-    attributes: {
-      sponsor: true,
-    },
   },
   {
     name: "PayPal",
     url: "https://paypal.com",
     logo: "paypal.svg",
     logoIcon: true,
-    attributes: {
-      testimonial:
-        "We love using Babel and couldn't imagine a toolchain without it",
-    },
   },
   {
     name: "Airbnb",
     url: "https://www.airbnb.com/",
     logo: "airbnb.svg",
+    attributes: {
+      sponsor: true,
+    },
   },
   {
     name: "Reddit",
@@ -58,9 +52,6 @@ const users = [
     name: "Atlassian",
     url: "https://www.atlassian.com/",
     logo: "atlassian.svg",
-    attributes: {
-      testimonial: "Australia says hi to Babel!",
-    },
   },
   {
     name: "NFL",
@@ -216,10 +207,6 @@ const users = [
     name: "Flipkart",
     url: "http://www.flipkart.com",
     logo: "flipkart.png",
-    attributes: {
-      testimonial:
-        "Hooray for Babel, we can't get enough, we even wrote this long blurb about how great it is.",
-    },
   },
   {
     name: "Sprout Social",
@@ -741,6 +728,9 @@ const users = [
     name: "BitMEX",
     url: "https://www.bitmex.com",
     logo: "bitmex.svg",
+    attributes: {
+      sponsor: true,
+    },
   },
   {
     name: "Discord",
@@ -912,10 +902,6 @@ const users = [
     name: "Microsoft",
     url: "https://www.microsoft.com",
     logo: "microsoft.svg",
-    attributes: {
-      testimonial:
-        "We build several tools utilizing Babel for within the Visual Studio Code.",
-    },
   },
   {
     name: "Indigo",

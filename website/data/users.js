@@ -580,6 +580,9 @@ const users = [
     name: "Behance",
     url: "https://www.myportfolio.com/",
     logo: "behance.svg",
+    attributes: {
+      sponsor: true,
+    },
   },
   {
     name: "Targetprocess",

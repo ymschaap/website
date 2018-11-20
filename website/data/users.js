@@ -1153,6 +1153,15 @@ const users = [
     logo: "bitmidi.svg",
     added: "2018-09-21",
   },
+  {
+    name: "Google Test",
+    url: "https://google.com/",
+    logo: "google-test.jpg",
+    "attributes": {
+        testimonial: "Babel is great. We list it in Google."
+    },
+    added: "2018-11-20"
+  },
 ];
 
 module.exports = users;

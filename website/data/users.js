@@ -1153,6 +1153,17 @@ const users = [
     logo: "bitmidi.svg",
     added: "2018-09-21",
   },
+  {
+    name: "Test Company Babel",
+    url: "https://facebook.com/",
+    logo: "test-company-babel.png",
+    "attributes": {
+        openSource: true,
+        contributor: true,
+        sponsor: true
+    },
+    added: "2019-01-28"
+  },
 ];
 
 module.exports = users;
